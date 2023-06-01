@@ -1,0 +1,67 @@
+version: 2
+
+models:
+  - name: AIRCRAFT_DIM1
+    columns:
+      - name: AIRCRAFT_IDENTIFIER
+        tests:
+          - unique
+          - not_null
+
+  - name: AIRLINE_FLIGHT_DIM1
+    columns:
+      - name: AIRLINE_FLIGHT_IDENTIFIER
+        tests:
+          - unique
+          - not_null
+
+  - name: AIRPORT_DIM1
+    columns:
+      - name: AIRPORT_CODE
+        tests:
+          - unique
+          - not_null
+
+  - name: DISCOUNT_REASON_DIM1
+    columns:
+      - name: DISCOUNT_REASON_IDENTIFIER
+        tests:
+          - unique
+          - not_null
+
+  - name: ORDER_DIM1
+    columns:
+      - name: ORDER_IDENTIFIER
+        tests:
+          - unique
+          - not_null
+
+  - name: TAX_INFO_DIM1
+    columns:
+      - name: TAX_INFO_IDENTIFIER
+        tests:
+          - unique
+          - not_null
+
+  - name: PRODUCT_DIM1
+    tests:
+      - unique:
+          column_name: "(ITEM_NAME || '-' || EFFECTIVE_DATETIME)"
+    columns:
+      - name: PRODUCT_IDENTIFIER
+        tests:
+          - unique
+          - not_null
+          
+  - name: CURRENCY_DIM1
+    columns:
+      - name: CURRENCY_CODE
+        tests:
+          - not_null
+          - unique
+  - name: LIFE_REPORT_FLIGHTS_FACT1
+    columns:
+      - name: LIFE_REPORT_FLIGHTS_FACT_IDENTIFIER
+        tests:
+          - unique
+          - not_null

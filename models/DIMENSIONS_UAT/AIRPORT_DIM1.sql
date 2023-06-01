@@ -1,0 +1,21 @@
+{{
+    config(
+        materialized = 'incremental',
+        incremental_strategy = 'merge',
+        unique_key = 'AIRPORT_CODE',
+        alias = 'AIRPORT_DIM'
+    )
+}}
+select DISTINCT
+    DEPARTURE AS AIRPORT_CODE,
+	NULL AS AIRPORT_NAME,
+	CURRENT_TIMESTAMP AS INSERTDATETIME
+from {{ source('INFLIGHTSALES_LIFEBOB', 'FLIGHTS') }}
+WHERE DEPARTURE IS NOT NULL
+UNION 
+select DISTINCT
+    ARRIVAL AS AIRPORT_CODE,
+	NULL AS AIRPORT_NAME,
+	CURRENT_TIMESTAMP AS INSERTDATETIME
+from {{ source('INFLIGHTSALES_LIFEBOB', 'FLIGHTS') }}
+ WHERE ARRIVAL IS NOT NULL

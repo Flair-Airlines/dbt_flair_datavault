@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: LIFE_REPORT_FLIGHTS1 
+    database: FIVETRAN_DATABASE  
+    schema: SFTP 
+    tables:
+      - name: LIFE_REPORT_FLIGHTS  

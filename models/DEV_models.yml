@@ -1,0 +1,76 @@
+version: 2
+
+models:
+  - name: AIRCRAFT_DIM
+    columns:
+      - name: AIRCRAFT_IDENTIFIER
+        description: This is a surrogate key
+        tests:
+          - unique
+          - not_null
+
+  - name: FLIGHT_DIM
+    columns:
+      - name: FLIGHT_IDENTIFIER
+        tests:
+          - unique
+          - not_null
+
+  - name: AIRPORT_DIM
+    columns:
+      - name: AIRPORT_CODE
+        tests:
+          - unique
+          - not_null
+
+  - name: DISCOUNT_REASON_DIM
+    columns:
+      - name: DISCOUNT_REASON_IDENTIFIER
+        tests:
+          - unique
+          - not_null
+
+  - name: ORDER_DIM
+    columns:
+      - name: ORDER_IDENTIFIER
+        tests:
+          - unique
+          - not_null
+
+  - name: TAX_INFO_DIM
+    columns:
+      - name: TAX_INFO_IDENTIFIER
+        tests:
+          - unique
+          - not_null
+
+  - name: PRODUCT_DIM
+    tests:
+      - unique:
+          column_name: "(ITEM_NAME || '-' || EFFECTIVE_DATETIME)"
+    columns:
+      - name: PRODUCT_IDENTIFIER
+        tests:
+          - unique
+          - not_null
+      - name: CURRENCY_CODE
+        tests:
+          - relationships:
+              to: ref('CURRENCY_DIM')
+              field: CURRENCY_CODE
+          
+  - name: CURRENCY_DIM
+    columns:
+      - name: CURRENCY_CODE
+        tests:
+          - not_null
+          - unique
+  - name: LIFE_REPORT_FLIGHTS_FACT
+    columns:
+      - name: LIFE_REPORT_FLIGHTS_FACT_IDENTIFIER
+        tests:
+          - unique
+          - not_null
+
+
+
