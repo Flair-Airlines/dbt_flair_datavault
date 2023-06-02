@@ -59,6 +59,10 @@ models:
       materialized: INCREMENTAL
       database: AMELIA_DATAMART_DEV
       schema: DIMENSIONS
+    AMELIA_FACTS:
+      materialized: INCREMENTAL
+      database: AMELIA_DATAMART_DEV
+      schema: FACTS
 seeds:
   my_new_project:
     STAGING_DEV:
