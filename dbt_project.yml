@@ -63,6 +63,10 @@ models:
       materialized: INCREMENTAL
       database: AMELIA_DATAMART_DEV
       schema: FACTS
+    PSS_AMELIARES_DBO:
+      database: STAGE_DEV
+      schema: STG_PSS_AMELIARES_DBO
+
 seeds:
   my_new_project:
     STAGING_DEV:

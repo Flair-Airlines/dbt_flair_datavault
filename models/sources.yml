@@ -36,6 +36,8 @@ sources:
       - name: TBL_PAX
       - name: TBL_RES_SEGMENTS_LEVEL
       - name: TBL_LEG_FLIGHTS
+      - name: TBL_GL_PAYMENTS
+      - name: TBL_GL_PAYMENT_METHOD
 
 
           

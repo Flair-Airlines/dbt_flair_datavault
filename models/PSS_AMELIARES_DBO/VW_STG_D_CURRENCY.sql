@@ -1,6 +1,6 @@
 {{
     config(
-        materialized = 'incremental',
+        materialized = 'view',
         incremental_strategy = 'merge',
         unique_key = 'CURRENCY_SURROGATE_ID_HASH'
     )
@@ -27,3 +27,4 @@ NULL AS EXPIRY_DATETIME,
  ]) }} as ORIGINAL_SURROGATE_ID_HASH
 
 FROM {{ source('PSS_AMELIARES_DBO' ,'TBL_CURRENCY') }}
+
