@@ -25,10 +25,14 @@ sources:
       - name: TBL_RES_HEADER
       - name: TBL_RES_LEGS
 
-
+  - name: QUALTRICS
+    database: FIVETRAN_DATABASE
+    schema: QUALTRICS_CUSTOMER_FEEDBACK
+    tables:
+      - name: SURVEY_EMBEDDED_DATA
+        description: This is a raw data ingested in Snowflake via FIVETRAN
           
 
-                  
                 
                   
 

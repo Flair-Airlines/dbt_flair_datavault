@@ -59,6 +59,10 @@ models:
       materialized: INCREMENTAL
       database: AMELIA_DATAMART_DEV
       schema: DIMENSIONS
+    QUALTRICS_RAW_PRE_STAGE:
+      materialized: INCREMENTAL
+      database: FIVETRAN_DATABASE
+      schema: QUALTRICS_CUSTOMER_FEEDBACK
 seeds:
   my_new_project:
     STAGING_DEV:
