@@ -8,7 +8,7 @@
   {% do run_query("call STAGE_DEV.AMELIA.PROC_STG_COUNTRY_SCD();") %}
   {% do run_query("call STAGE_DEV.AMELIA.PROC_STG_CURRENCY_SCD();") %}
   {% do run_query("call STAGE_DEV.AMELIA.PROC_STG_GL_CHARGE_TYPE_DEFINITION_SCD();") %}
-  {% do run_query("call STAGE_DEV.AMELIA.PROC_STG_PAX_SCD();") %}
+  --{% do run_query("call STAGE_DEV.AMELIA.PROC_STG_PAX_SCD();") %}
   {% do run_query("call STAGE_DEV.AMELIA.PROC_STG_PROVINCE_DEFINITION_SCD();") %}
   {% do run_query("call STAGE_DEV.AMELIA.PROC_STG_RES_HEADER_SCD();") %}
   {% do run_query("call STAGE_DEV.AMELIA.PROC_STG_RES_LEGS_SCD();") %}
