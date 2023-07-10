@@ -38,6 +38,10 @@ sources:
       - name: TBL_LEG_FLIGHTS
       - name: TBL_GL_PAYMENTS
       - name: TBL_GL_PAYMENT_METHOD
+      - name: TBL_AGENCY
+      - name: TBL_USERS
+      - name: TBL_SKED_FLIGHT_WATCH_JOURNEY_LOG
+      - name: TBL_RES_CHECKIN
 
 
           

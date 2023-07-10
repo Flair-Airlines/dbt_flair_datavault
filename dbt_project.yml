@@ -66,6 +66,10 @@ models:
     PSS_AMELIARES_DBO:
       database: STAGE_DEV
       schema: STG_PSS_AMELIARES_DBO
+    IOATAWARE:
+      database: ANALYTICS_PROD
+      schema: IOATAWARE
+
 
 seeds:
   my_new_project:
