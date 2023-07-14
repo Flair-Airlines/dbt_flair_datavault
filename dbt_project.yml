@@ -59,10 +59,10 @@ models:
       materialized: INCREMENTAL
       database: AMELIA_DATAMART_DEV
       schema: DIMENSIONS
-    snap_table:
-      materialized: TABLE
-      database: DATAVAULT_DEV
-      schema: DV_AMELIA
+
+    IOATAWARE:
+      database: ANALYTICS_PROD
+      schema: IOATAWARE
 seeds:
   my_new_project:
     STAGING_DEV:
