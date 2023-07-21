@@ -42,6 +42,7 @@ sources:
       - name: TBL_USERS
       - name: TBL_SKED_FLIGHT_WATCH_JOURNEY_LOG
       - name: TBL_RES_CHECKIN
+      - name: TBL_TAX_CONFIGURATION
 
 
           
