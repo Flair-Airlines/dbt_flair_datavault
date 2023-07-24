@@ -1,3 +1,3 @@
-{% macro run_pax_scd_proc() %}
+{% macro run_mis_scd_proc() %}
   {% do run_query("call STAGE_DEV.MIS.PROC_STG_PAX();") %}
 {% endmacro %}
