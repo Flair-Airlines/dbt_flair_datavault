@@ -2,4 +2,6 @@
   {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_PAX();") %}
   {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_PAX_ANCILLARY_CHARGES();") %}
   {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_FLIGHT_SEGMENTS_TO_BAGS();") %}
+  {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_PASSENGER_ANCILLARY_CHARGE_TAXES();") %}
+  {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_PAX_ANCILLARY_PAYMENTS();") %}  
 {% endmacro %}
