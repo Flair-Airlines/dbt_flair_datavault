@@ -12,6 +12,7 @@ CASE
 end as "Source",
         --t12.dtm_etd as FlightDate_UTC,
         TO_VARCHAR(TO_DATE(t12.dtm_local_etd_date),'MM/DD/YYYY') as "Flight Date",
+		TO_VARCHAR(TO_TIME(t12.dtm_local_etd_date),'HH24:MI:SS') as "Flight time"
 		t1.lng_Reservation_Nmbr as "Reservation Nmbr",
 		t12.lng_Sked_Detail_Id_Nmbr as "Sked Detail Id Nmbr",
 		to_varchar(t1.dtm_GL_Charges_Date,'MM/DD/YYYY HH12:MI:SS AM') as "Charge Date",
