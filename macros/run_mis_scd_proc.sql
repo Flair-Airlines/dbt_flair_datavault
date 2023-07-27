@@ -11,5 +11,13 @@
   {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_ANCILLARY_SEAT_CHARGES();") %}
   {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_ANCILLARY_TICKET_CHARGES();") %}
   {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_FLIGHT_SEGMENTS();") %}
-  {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_PAX_ANCILLARY_TRANSACTIONS();") %}  
+  {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_PAX_ANCILLARY_TRANSACTIONS();") %}
+  {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_ANCILLARY_TEMPLATES();") %}
+  {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_BAG_TYPES();") %}
+  {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_CURRENCIES();") %}
+  {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_PASSENGER_ANCILLARY_TAXES();") %}
+  {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_SSR_CATEGORIES();") %}
+  {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_SSR_CODES();") %}
+  {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_TAXES();") %}
+  {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_USERS();") %}    
 {% endmacro %}
