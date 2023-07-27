@@ -19,5 +19,6 @@
   {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_SSR_CATEGORIES();") %}
   {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_SSR_CODES();") %}
   {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_TAXES();") %}
-  {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_USERS();") %}    
+  {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_USERS();") %}
+  {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_ANCILLARY_TEMPLATES_TO_CHARGES();") %}    
 {% endmacro %}
