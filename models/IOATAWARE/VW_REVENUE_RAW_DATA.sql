@@ -5,6 +5,7 @@
 }}
 select 
 TO_VARCHAR(TO_DATE(t8.DTM_FLIGHT_DATE),'MM/DD/YYYY') AS "Flight Date",
+TO_VARCHAR(TO_TIME(t8.DTM_FLIGHT_DATE),'HH24:MI:SS') as "Flight time",
 t1.LNG_RESERVATION_NMBR as "Reservation Nmbr",
 t8.LNG_SKED_DETAIL_ID_NMBR AS  "Sked Detail Id Nmbr",
 to_varchar(timeadd(hour,-7,t1.dtm_GL_Charges_Date),'MM/DD/YYYY HH12:MI:SS AM') as "Charge Date",
@@ -26,6 +27,7 @@ t6.LNG_AGENCY_ID_NMBR as "Agency Id Nmbr",
 t3.STR_REF1 as "Reference",
 t2.STR_CURRENCY_IDENT AS "Currency Ident",
 t6.STR_AGENCY_NAME as "Agency Name",
+t11.STR_USER_NAME as "Sales Username",
 case 
     WHEN t23.str_country_desc = 'Canada' AND t24.str_country_desc = 'Canada' THEN 'Domestic'
     ELSE 'International'
@@ -37,7 +39,6 @@ case
 	when t1.lng_GL_Charge_Type_Id_Nmbr in (1, 5, 1009, 1010, 1012, 1016, 1018, 1019, 1020, 1021, 1022, 1023,1024,1025,1026,1027) then 'FlowThru'
 	else 'Unassigned'
 end as "Category",
-t11.STR_USER_NAME as "Sales Username",
 case 
 	when t1.lng_GL_Charge_Type_Id_Nmbr = 1 then 'Airport Improvement Fee' -- OK
 	when t1.lng_GL_Charge_Type_Id_Nmbr = 3 then 'Cancellation' -- OK
