@@ -3,7 +3,10 @@
         materialized = 'view',
     )
 }}
-select 
+
+select  
+--add mst time of the flight date for testing
+convert_timezone('UTC', 'America/Denver', t8.DTM_FLIGHT_DATE) as "Flight MST Date",
 TO_VARCHAR(TO_DATE(t8.DTM_FLIGHT_DATE),'MM/DD/YYYY') AS "Flight Date",
 TO_VARCHAR(TO_TIME(t8.DTM_FLIGHT_DATE),'HH24:MI:SS') as "Flight time",
 t1.LNG_RESERVATION_NMBR as "Reservation Nmbr",
@@ -163,7 +166,7 @@ from (
   select
 LNG_GL_CHARGES_ID_NMBR,
 dense_rank() OVER ( PARTITION BY LNG_RESERVATION_NMBR,LNG_RES_LEGS_ID_NMBR,LNG_GL_CHARGE_TYPE_ID_NMBR,
-                               MNY_GL_CHARGES_AMOUNT,MNY_GL_CHARGES_TAXES,MNY_GL_CHARGES_TOTAL,BIT_FULLY_PAID ,LNG_CURRENCY_ID_NMBR,MNY_GL_CHARGES_DISCOUNT order by DTM_GL_CHARGES_DATE desc,LNG_CREATION_USER_ID_NMBR desc ) rank
+                               MNY_GL_CHARGES_AMOUNT,MNY_GL_CHARGES_TAXES,MNY_GL_CHARGES_TOTAL,BIT_FULLY_PAID ,LNG_CURRENCY_ID_NMBR,MNY_GL_CHARGES_DISCOUNT,DTM_GL_CHARGES_DATE order by LNG_CREATION_USER_ID_NMBR desc ) rank
   from  {{ source('PSS_AMELIARES_DBO', 'TBL_GL_CHARGES') }} 
  
 )
