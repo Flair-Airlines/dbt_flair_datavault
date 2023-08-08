@@ -7,7 +7,13 @@
 select 
 t1.LNG_RESERVATION_NMBR as "Reservation Nmbr",
 t8.LNG_SKED_DETAIL_ID_NMBR AS  "Sked Detail Id Nmbr",
+
+convert_timezone('UTC', 'America/Denver', t8.DTM_FLIGHT_DATE) as "Flight MST Date",
 TO_VARCHAR(TO_DATE(t8.DTM_FLIGHT_DATE),'MM/DD/YYYY') AS "Flight Date",
+TO_VARCHAR(TO_TIME(t8.DTM_FLIGHT_DATE),'HH24:MI:SS') as "Flight time",
+
+
+--TO_VARCHAR(TO_DATE(t8.DTM_FLIGHT_DATE),'MM/DD/YYYY') AS "Flight Date",
 t9.STR_IDENT AS "Departure",
 t10.STR_IDENT as "Arrival",
 t1.LNG_RES_LEGS_ID_NMBR AS "Legs Id Nmbr",

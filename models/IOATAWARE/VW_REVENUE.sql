@@ -4,7 +4,6 @@
     )
 }}
 
-
 with tmp as (select
 CASE
     WHEN t9.STR_AGENCY_NAME <> '' AND t22.STR_USER_LOGON_NAME <> '' then 'Amelia'
@@ -32,7 +31,6 @@ end as "Source",
        t4.lng_Leg_Nmbr as "Leg Nmbr",
        t8.lng_Agency_Id_Nmbr as "Agency Id Nmbr",
        t9.str_Agency_Name as "Agency Name",
-       t22.str_User_Name as "Sale_Username",
        t8.str_Ref1 as "Reference",
        t7.str_Currency_Ident as "Currency Ident",
        t1.mny_Exchange_Rate as "Exchange Rate",
