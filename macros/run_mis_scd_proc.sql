@@ -21,4 +21,5 @@
   {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_TAXES();") %}
   {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_USERS();") %}
   {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_ANCILLARY_TEMPLATES_TO_CHARGES();") %}    
+  {% do run_query("call STAGE_DEV.MIS_DBO.PROC_STG_BAGS();") %} 
 {% endmacro %}
