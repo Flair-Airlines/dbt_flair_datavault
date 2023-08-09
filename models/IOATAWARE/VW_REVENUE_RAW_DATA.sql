@@ -5,7 +5,7 @@
 }}
 
 select  
---add mst time of the flight date for testing
+--change to local date as report use the local date
 TO_VARCHAR(TO_DATE(t8.DTM_LOCAL_ETD_DATE),'MM/DD/YYYY') AS "Flight Date",
 --convert_timezone('UTC', 'MST', t8.DTM_FLIGHT_DATE) as "Flight MST Date",
 --TO_VARCHAR(TO_DATE(t8.DTM_FLIGHT_DATE),'MM/DD/YYYY') AS "Flight Date",
