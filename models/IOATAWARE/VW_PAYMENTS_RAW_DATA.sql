@@ -4,7 +4,9 @@
     )
 }}
 select
-to_varchar(timeadd(hour,-6,t1.DTM_GL_PAYMENTS_DATE),'MM/DD/YYYY HH12:MI:SS AM') as "Payment Date",
+--change the timezone conversion here as handles daylight saving 
+TO_VARCHAR(convert_timezone('UTC', 'America/Denver', t1.DTM_GL_PAYMENTS_DATE),'MM/DD/YYYY') as "Payment Date",
+--to_varchar(timeadd(hour,-6,t1.DTM_GL_PAYMENTS_DATE),'MM/DD/YYYY HH12:MI:SS AM') as "Payment Date",
 --t1.DTM_GL_PAYMENTS_DATE as "Payment Date",
 t1.LNG_RESERVATION_NMBR as "Reservation Nmbr",
 t4.STR_REF1 as PNR,

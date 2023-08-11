@@ -25,7 +25,7 @@ t9.STR_IDENT AS "Departure",
 t10.STR_IDENT as "Arrival",
 t1.LNG_RES_LEGS_ID_NMBR AS "Legs Id Nmbr",
 t1.LNG_GL_CHARGE_TYPE_ID_NMBR as "Charge Type",
-round(t1.MNY_GL_CHARGES_AMOUNT,2) as "Net Charge",
+round((t1.MNY_GL_CHARGES_AMOUNT -t1.MNY_GL_CHARGES_DISCOUNT),2) as "Net Charge",
 round(t1.MNY_GL_CHARGES_TAXES,2) as "Taxes",
 round(t1.MNY_GL_CHARGES_TOTAL,2) as "Total Charge",
 t5.STR_GL_CHARGE_TYPE_DESC as "Charge Type Desc",
@@ -190,4 +190,6 @@ left join {{ source('PSS_AMELIARES_DBO', 'TBL_PROVINCE_DEFINITION') }} t18 ON t9
 left join {{ source('PSS_AMELIARES_DBO', 'TBL_PROVINCE_DEFINITION') }} t19 ON t10.lng_Province_Id_Nmbr = t19.lng_Province_Id_Nmbr and t19._fivetran_deleted = FALSE
 left join {{ source('PSS_AMELIARES_DBO', 'TBL_COUNTRY') }} t23 ON t23.LNG_COUNTRY_ID_NMBR = t18.LNG_COUNTRY_ID_NMBR and t23._fivetran_deleted = FALSE
 left join {{ source('PSS_AMELIARES_DBO', 'TBL_COUNTRY') }} t24 ON t24.LNG_COUNTRY_ID_NMBR = t19.LNG_COUNTRY_ID_NMBR and t24._fivetran_deleted = FALSE
-where t7.str_res_status <> 'X'
+--LEFT JOIN {{ source('PSS_AMELIARES_DBO', 'TBL_RES_PAX_GROUP') }} t25 on t25.LNG_RES_PAX_GROUP_ID_NMBR=t4.LNG_RES_PAX_GROUP_ID_NMBR
+where t3.STR_CAX_REASON IS NULL OR t3.STR_CAX_REASON  = ''
+--or (t25.STR_PAX_STATUS <> 'X'and t4.STR_LEG_STATUS <> 'X' and t7.STR_RES_STATUS <> 'X')
