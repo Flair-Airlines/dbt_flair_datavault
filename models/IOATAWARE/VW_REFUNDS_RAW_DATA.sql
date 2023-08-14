@@ -7,7 +7,7 @@
 select 
 --convert to MT time for testing
 TO_VARCHAR(convert_timezone('UTC', 'America/Denver', t1.DTM_REFUND_DATE),'MM/DD/YYYY') as "Refund Date",
-TO_VARCHAR(convert_timezone('UTC', 'America/Denver', t1.DTM_REFUND_DATE),'MM/DD/YYYY') as "Refund Time",
+TO_VARCHAR(convert_timezone('UTC', 'America/Denver', t1.DTM_REFUND_DATE),'HH12:MI AM') as "Refund Time",
 
 -- TO_VARCHAR(TO_DATE(t1.DTM_REFUND_DATE),'MM/DD/YYYY') AS "Refund Date",
 -- TO_VARCHAR(TO_TIME(t1.DTM_REFUND_DATE),'HH12:MI AM') as "Refund Time",
