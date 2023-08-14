@@ -4,7 +4,6 @@
     )
 }}
 
-
 with tmp as (select
 CASE
     WHEN t9.STR_AGENCY_NAME <> '' AND t22.STR_USER_LOGON_NAME <> '' then 'Amelia'
@@ -12,6 +11,7 @@ CASE
 end as "Source",
         --t12.dtm_etd as FlightDate_UTC,
         TO_VARCHAR(TO_DATE(t12.dtm_local_etd_date),'MM/DD/YYYY') as "Flight Date",
+		TO_VARCHAR(TO_TIME(t12.dtm_local_etd_date),'HH24:MI:SS') as "Flight time",
 		t1.lng_Reservation_Nmbr as "Reservation Nmbr",
 		t12.lng_Sked_Detail_Id_Nmbr as "Sked Detail Id Nmbr",
 		to_varchar(t1.dtm_GL_Charges_Date,'MM/DD/YYYY HH12:MI:SS AM') as "Charge Date",
@@ -34,7 +34,6 @@ end as "Source",
        t8.str_Ref1 as "Reference",
        t7.str_Currency_Ident as "Currency Ident",
        t1.mny_Exchange_Rate as "Exchange Rate",
-       t22.str_User_Name as "Sale_Username",
       t12.mny_Distance,
        
 		case 
@@ -192,6 +191,7 @@ LEFT JOIN {{ source('PSS_AMELIARES_DBO', 'TBL_COUNTRY') }} AS t24 ON t24.LNG_COU
 
 		"Source",
 		"Flight Date",
+        "Flight time",
 		"Reservation Nmbr",
 		"Sked Detail Id Nmbr",
 		"Charge Date",
