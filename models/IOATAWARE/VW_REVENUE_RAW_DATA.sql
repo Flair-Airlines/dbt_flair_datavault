@@ -3,8 +3,13 @@
         materialized = 'view',
     )
 }}
-select 
-TO_VARCHAR(TO_DATE(t8.DTM_FLIGHT_DATE),'MM/DD/YYYY') AS "Flight Date",
+
+select  
+--change to local date as report use the local date
+TO_VARCHAR(TO_DATE(t8.DTM_LOCAL_ETD_DATE),'MM/DD/YYYY') AS "Flight Date",
+--convert_timezone('UTC', 'MST', t8.DTM_FLIGHT_DATE) as "Flight MST Date",
+--TO_VARCHAR(TO_DATE(t8.DTM_FLIGHT_DATE),'MM/DD/YYYY') AS "Flight Date",
+--TO_VARCHAR(TO_TIME(t8.DTM_FLIGHT_DATE),'HH24:MI:SS') as "Flight time",
 t1.LNG_RESERVATION_NMBR as "Reservation Nmbr",
 t8.LNG_SKED_DETAIL_ID_NMBR AS  "Sked Detail Id Nmbr",
 to_varchar(timeadd(hour,-7,t1.dtm_GL_Charges_Date),'MM/DD/YYYY HH12:MI:SS AM') as "Charge Date",
@@ -26,6 +31,7 @@ t6.LNG_AGENCY_ID_NMBR as "Agency Id Nmbr",
 t3.STR_REF1 as "Reference",
 t2.STR_CURRENCY_IDENT AS "Currency Ident",
 t6.STR_AGENCY_NAME as "Agency Name",
+t11.STR_USER_NAME as "Sales Username",
 case 
     WHEN t23.str_country_desc = 'Canada' AND t24.str_country_desc = 'Canada' THEN 'Domestic'
     ELSE 'International'
@@ -37,7 +43,6 @@ case
 	when t1.lng_GL_Charge_Type_Id_Nmbr in (1, 5, 1009, 1010, 1012, 1016, 1018, 1019, 1020, 1021, 1022, 1023,1024,1025,1026,1027) then 'FlowThru'
 	else 'Unassigned'
 end as "Category",
-t11.STR_USER_NAME as "Sales Username",
 case 
 	when t1.lng_GL_Charge_Type_Id_Nmbr = 1 then 'Airport Improvement Fee' -- OK
 	when t1.lng_GL_Charge_Type_Id_Nmbr = 3 then 'Cancellation' -- OK
@@ -162,7 +167,7 @@ from (
   select
 LNG_GL_CHARGES_ID_NMBR,
 dense_rank() OVER ( PARTITION BY LNG_RESERVATION_NMBR,LNG_RES_LEGS_ID_NMBR,LNG_GL_CHARGE_TYPE_ID_NMBR,
-                               MNY_GL_CHARGES_AMOUNT,MNY_GL_CHARGES_TAXES,MNY_GL_CHARGES_TOTAL,BIT_FULLY_PAID ,LNG_CURRENCY_ID_NMBR,MNY_GL_CHARGES_DISCOUNT order by DTM_GL_CHARGES_DATE desc,LNG_CREATION_USER_ID_NMBR desc ) rank
+                               MNY_GL_CHARGES_AMOUNT,MNY_GL_CHARGES_TAXES,MNY_GL_CHARGES_TOTAL,BIT_FULLY_PAID ,LNG_CURRENCY_ID_NMBR,MNY_GL_CHARGES_DISCOUNT,DTM_GL_CHARGES_DATE order by LNG_CREATION_USER_ID_NMBR desc ) rank
   from  {{ source('PSS_AMELIARES_DBO', 'TBL_GL_CHARGES') }} 
  
 )
@@ -184,18 +189,21 @@ LNG_LAST_MOD_USER_ID_NMBR from
   join chrg on t1.LNG_GL_CHARGES_ID_NMBR=chrg.LNG_GL_CHARGES_ID_NMBR and rank=1
  ) t1
 --from {{ source('PSS_AMELIARES_DBO', 'TBL_GL_CHARGES') }} t1
-left join {{ source('PSS_AMELIARES_DBO', 'TBL_CURRENCY') }} t2 on t2.LNG_CURRENCY_ID_NMBR = t1.LNG_CURRENCY_ID_NMBR
-left join {{ source('PSS_AMELIARES_DBO', 'TBL_RES_HEADER') }} t3 on t3.LNG_RESERVATION_NMBR = t1.LNG_RESERVATION_NMBR
-left join {{ source('PSS_AMELIARES_DBO', 'TBL_RES_LEGS') }} t4 on t4.LNG_RES_LEGS_ID_NMBR = t1.LNG_RES_LEGS_ID_NMBR
-left join {{ source('PSS_AMELIARES_DBO', 'TBL_GL_CHARGE_TYPE_DEFINITION') }} t5 on t5.LNG_GL_CHARGE_TYPE_ID_NMBR=t1.LNG_GL_CHARGE_TYPE_ID_NMBR
-left join {{ source('PSS_AMELIARES_DBO', 'TBL_AGENCY') }} t6 on t6.LNG_AGENCY_ID_NMBR = t3.LNG_AGENCY_ID_NMBR
-left join {{ source('PSS_AMELIARES_DBO', 'TBL_RES_SEGMENTS') }} t7 on t7.LNG_RES_LEGS_ID_NMBR = t1.LNG_RES_LEGS_ID_NMBR --and CAST(t1.DTM_GL_CHARGES_DATE AS DATE) = CAST(t7.DTM_CREATION_DATE AS DATE))
-left join {{ source('PSS_AMELIARES_DBO', 'TBL_SKED_DETAIL') }} t8 on t8.LNG_SKED_DETAIL_ID_NMBR = t7.LNG_SKED_DETAIL_ID_NMBR
-left join {{ source('PSS_AMELIARES_DBO', 'TBL_AIRPORT') }} t9 on t9.LNG_AIRPORT_ID_NMBR = t8.LNG_DEP_AIRPORT_ID_NMBR
-left join {{ source('PSS_AMELIARES_DBO', 'TBL_AIRPORT') }} t10 on t10.LNG_AIRPORT_ID_NMBR = t8.LNG_ARR_AIRPORT_ID_NMBR
-left join {{ source('PSS_AMELIARES_DBO', 'TBL_USERS') }} t11 ON t1.lng_Creation_User_Id_Nmbr  = t11.lng_User_Id_Nmbr
-left join {{ source('PSS_AMELIARES_DBO', 'TBL_PROVINCE_DEFINITION') }} t18 ON t9.lng_Province_Id_Nmbr = t18.lng_Province_Id_Nmbr
-left join {{ source('PSS_AMELIARES_DBO', 'TBL_PROVINCE_DEFINITION') }} t19 ON t10.lng_Province_Id_Nmbr = t19.lng_Province_Id_Nmbr
-left join {{ source('PSS_AMELIARES_DBO', 'TBL_COUNTRY') }} t23 ON t23.LNG_COUNTRY_ID_NMBR = t18.LNG_COUNTRY_ID_NMBR
-left join {{ source('PSS_AMELIARES_DBO', 'TBL_COUNTRY') }} t24 ON t24.LNG_COUNTRY_ID_NMBR = t19.LNG_COUNTRY_ID_NMBR 
+left join {{ source('PSS_AMELIARES_DBO', 'TBL_CURRENCY') }} t2 on t2.LNG_CURRENCY_ID_NMBR = t1.LNG_CURRENCY_ID_NMBR and t2._fivetran_deleted = FALSE
+left join {{ source('PSS_AMELIARES_DBO', 'TBL_RES_HEADER') }} t3 on t3.LNG_RESERVATION_NMBR = t1.LNG_RESERVATION_NMBR and t3._fivetran_deleted = FALSE
+left join {{ source('PSS_AMELIARES_DBO', 'TBL_RES_LEGS') }} t4 on t4.LNG_RES_LEGS_ID_NMBR = t1.LNG_RES_LEGS_ID_NMBR and t4._fivetran_deleted = FALSE
+left join {{ source('PSS_AMELIARES_DBO', 'TBL_GL_CHARGE_TYPE_DEFINITION') }} t5 on t5.LNG_GL_CHARGE_TYPE_ID_NMBR=t1.LNG_GL_CHARGE_TYPE_ID_NMBR and t5._fivetran_deleted = FALSE
+left join {{ source('PSS_AMELIARES_DBO', 'TBL_AGENCY') }} t6 on t6.LNG_AGENCY_ID_NMBR = t3.LNG_AGENCY_ID_NMBR and t6._fivetran_deleted = FALSE
+
+left join {{ source('PSS_AMELIARES_DBO', 'TBL_RES_SEGMENTS') }} t7 on t7.LNG_RES_LEGS_ID_NMBR = t4.LNG_RES_LEGS_ID_NMBR and t7._fivetran_deleted = FALSE --and CAST(t1.DTM_GL_CHARGES_DATE AS DATE) = CAST(t7.DTM_CREATION_DATE AS DATE))
+left join {{ source('PSS_AMELIARES_DBO', 'TBL_SKED_DETAIL') }} t8 on t8.LNG_SKED_DETAIL_ID_NMBR = t7.LNG_SKED_DETAIL_ID_NMBR and t8._fivetran_deleted = FALSE
+left join {{ source('PSS_AMELIARES_DBO', 'TBL_AIRPORT') }} t9 on t9.LNG_AIRPORT_ID_NMBR = t8.LNG_DEP_AIRPORT_ID_NMBR and t9._fivetran_deleted = FALSE
+left join {{ source('PSS_AMELIARES_DBO', 'TBL_AIRPORT') }} t10 on t10.LNG_AIRPORT_ID_NMBR = t8.LNG_ARR_AIRPORT_ID_NMBR and t10._fivetran_deleted = FALSE
+left join {{ source('PSS_AMELIARES_DBO', 'TBL_USERS') }} t11 ON t1.lng_Creation_User_Id_Nmbr  = t11.lng_User_Id_Nmbr and t11._fivetran_deleted = FALSE
+left join {{ source('PSS_AMELIARES_DBO', 'TBL_PROVINCE_DEFINITION') }} t18 ON t9.lng_Province_Id_Nmbr = t18.lng_Province_Id_Nmbr and t18._fivetran_deleted = FALSE
+left join {{ source('PSS_AMELIARES_DBO', 'TBL_PROVINCE_DEFINITION') }} t19 ON t10.lng_Province_Id_Nmbr = t19.lng_Province_Id_Nmbr and t19._fivetran_deleted = FALSE
+left join {{ source('PSS_AMELIARES_DBO', 'TBL_COUNTRY') }} t23 ON t23.LNG_COUNTRY_ID_NMBR = t18.LNG_COUNTRY_ID_NMBR and t23._fivetran_deleted = FALSE
+left join {{ source('PSS_AMELIARES_DBO', 'TBL_COUNTRY') }} t24 ON t24.LNG_COUNTRY_ID_NMBR = t19.LNG_COUNTRY_ID_NMBR and t24._fivetran_deleted = FALSE
 --where t1.LNG_RESERVATION_NMBR= 4046596 and "Flight Date"= '07/08/2023'
+where  t3.str_cax_reason not in ('Hold On Reservation Expired')
+and t5.str_GL_Charge_Type_Desc not in ('Balance Charge')
