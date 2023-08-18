@@ -8,9 +8,10 @@ select distinct
 t1.LNG_RESERVATION_NMBR as "lng Reservation Nmbr",
 t4.LNG_SKED_DETAIL_ID_NMBR as "lng Sked Detail Id Nmbr",
  t11.STR_LAST_NAME ||t11.STR_FIRST_NAME || TO_VARCHAR(TO_DATE(t11.DTM_DOB_DATE ),'YYYYMMDD') as "Str Index",
-TO_VARCHAR(TO_DATE(t4.DTM_FLIGHT_DATE),'YYYY/MM/DD') as "Flight Date",
+ --change to local flight date
+TO_VARCHAR(TO_DATE(t4.DTM_LOCAL_ETD_DATE),'MM/DD/YYYY') as "Flight Date",
 t5.STR_IDENT as "Departure",
-TO_VARCHAR(TO_DATE(t4.DTM_FLIGHT_DATE),'YYYY/MM/DD') as "Actual Flight Date",
+TO_VARCHAR(TO_DATE(t4.DTM_FLIGHT_DATE),'MM/DD/YYYY') as "Actual Flight Date",
 t6.STR_IDENT as "Arrival",
 t1.LNG_RES_LEGS_ID_NMBR as "lng Res Legs Id Nmbr",
 to_varchar(t7.DTM_LOCAL_DEP_DATE,'MM/DD/YYYY HH12:MI:SS AM') as "dtm Local Dep Date",
