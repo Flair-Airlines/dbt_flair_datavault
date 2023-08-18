@@ -44,12 +44,23 @@ sources:
       - name: TBL_RES_CHECKIN
       - name: TBL_TAX_CONFIGURATION
 
-
-          
-
-                  
-                
-                  
-
-          
-                  
+  - name: INFLIGHTSALES_DIM_STG
+    database: INFLIGHT_SALES_DATAMART_{{ env_var('DBT_DBENV', 'DEV') }}
+    schema: DIMENSIONS
+    tables:
+      - name: AIRCRAFT_DIM
+      - name: AIRLINE_FLIGHT_DIM
+      - name: AIRPORT_DIM
+      - name: CURRENCY_DIM
+      - name: DISCOUNT_REASON_DIM
+      - name: FLIGHT_DIM
+      - name: ORDER_DIM
+      - name: PRODUCT_DIM
+      - name: TAX_INFO_DIM
+  - name: INFLIGHTSALES_FACT_STG
+    database: INFLIGHT_SALES_DATAMART_{{ env_var('DBT_DBENV', 'DEV') }}
+    schema: FACTS
+    tables:
+      - name: LIFE_REPORT_FLIGHTS_FACT
+      - name: ORDER_FACT
+        description: Inflight Sales Staging Data
