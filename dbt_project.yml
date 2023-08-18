@@ -63,6 +63,11 @@ models:
     IOATAWARE:
       database: ANALYTICS_PROD
       schema: IOATAWARE
+    ANALYTICS:
+      INFLIGHT_SALES:
+        database: ANALYTICS_{{ env_var('DBT_DBENV', 'DEV') }}
+        schema: INFLIGHT_SALES
+
 seeds:
   my_new_project:
     STAGING_DEV:
