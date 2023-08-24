@@ -1,0 +1,30 @@
+{% macro AMELIA_STAGE_LOAD() %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_CHARGES_FARECLASS_XREF();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FARE_FAMILY_DEFINITION();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_PAX();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_RES_LEGS();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_SEAT_ALLOCATION();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FAREHEADER_AIRPORT_INCLUSION_XREF();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FARE_CATEGORY();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_GL_CHARGES();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_RES_SEGMENTS();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FARE_DETAIL();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FARE_HEADER();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FARE_VISIBILITY_TYPE();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FARE_CLASS_SEAT_CHARGE_TYPE();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FARE_CATEGORY_ASSOCIATED();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FARE_CLASS_MARKUP();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FAREHEADER_GLSURCHARGE_CURRENCY();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_SKED_FLIGHT_WATCH_JOURNEY_LOG();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FARE_CATEGORY_NESTING();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FARE_CATEGORY_VISIBILITY_XREF();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FARE_DETAIL_CURRENCY();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FAREHEADER_GLSURCHARGE_XREF();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FARE_ALLOCATION_TEMPLATE();") %}    
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FARE_CATEGORY_SEAT_CHARGE_CURRENCY();") %} 
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FARE_CLASS();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FARE_DETAIL_PROMO_CODE();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_LEVEL_OF_SERVICE();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_SKEDDETAIL_LEVELOFSERVICE();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FARE_CLASS_VISIBILITY_XREF();") %}
+{% endmacro %}
