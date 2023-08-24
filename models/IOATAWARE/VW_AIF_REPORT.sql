@@ -3,6 +3,7 @@
         materialized = 'view',
     )
 }}
+
 WITH TBL_GL_CHARGES_MAX AS (
  SELECT * FROM 
  (select * 
@@ -23,7 +24,6 @@ SELECT TBL_GL_CHARGES_MAX.lng_Res_Legs_Id_Nmbr
 , tbl_Fare_Class.str_Fare_Class_Short 
 , tbl_Fare_Class.str_Fare_Class_Description 
 FROM TBL_GL_CHARGES_MAX AS TBL_GL_CHARGES_MAX
-LEFT JOIN (SELECT * FROM {{ source('PSS_AMELIARES_DBO', 'TBL_CHARGES_FARECLASS_XREF') }}   WHERE "_FIVETRAN_DELETED" = FALSE) AS TBL_CHARGES_FARECLASS_XREF ON TBL_GL_CHARGES_MAX.LNG_GL_CHARGES_ID_NMBR = TBL_CHARGES_FARECLASS_XREF.LNG_GL_CHARGES_ID_NMBR 
 LEFT JOIN (SELECT * FROM {{ source('PSS_AMELIARES_DBO', 'TBL_FARE_CLASS') }}  tbl_Fare_Class WHERE "_FIVETRAN_DELETED" = FALSE) AS tbl_Fare_Class on TBL_CHARGES_FARECLASS_XREF.lng_Fare_Class_Id_Nmbr = tbl_Fare_Class.lng_Fare_Class_Id_Nmbr  
 )
 
@@ -74,6 +74,7 @@ LEFT JOIN (SELECT * FROM {{ source('PSS_AMELIARES_DBO', 'TBL_FARE_CLASS') }}  tb
 					-- OR (t3.lng_Fare_Category_Id_Nmbr = 16))
      --                    THEN 1
      --                    ELSE 0
+     --                 END NonRevenue
                  ,CASE WHEN t3.lng_reservation_nmbr is null
                          THEN 1
                          ELSE 0
@@ -88,9 +89,9 @@ LEFT JOIN (SELECT * FROM {{ source('PSS_AMELIARES_DBO', 'TBL_FARE_CLASS') }}  tb
 
           
 select LNG_SKED_DETAIL_ID_NMBR as "Flight_ID"
-        ,DTM_LOCAL_DEP_DATE AS "FlightDate"
+        ,TO_VARCHAR(DTM_LOCAL_DEP_DATE,'MM/DD/YYYY') as "FlightDate"
         ,STR_FLIGHT_NMBR as "FlightNum"
-        ,DTM_LOCAL_DEP_DATE as "Departure"
+        ,DEPARTURE_AIRPORT as "Departure"
         ,ARRIVAL_AIRPORT as "Arrival"
         ,TAIL as "Tail_Identifier"
         ,sum(Boarded) as "Total_PAX_OnBoard"

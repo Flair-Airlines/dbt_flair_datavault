@@ -47,10 +47,14 @@ sources:
       - name: TBL_FARE_CLASS     
       - name: TBL_CHARGES_FARECLASS_XREF 
       
-      - name: TBL_LEVEL_OF_SERVICE
-
-      
+      - name: TBL_LEVEL_OF_SERVICE      
       - name: TBL_SEAT_ALLOCATION 
+  
+  - name: AMELIA_DBO
+    database: STAGE_DEV
+    schema: AMELIA_DBO
+    tables:
+      - name: STG_PAX
 
       
       
