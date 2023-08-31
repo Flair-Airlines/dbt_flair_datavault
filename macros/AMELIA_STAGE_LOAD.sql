@@ -26,5 +26,24 @@
   {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FARE_DETAIL_PROMO_CODE();") %}
   {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_LEVEL_OF_SERVICE();") %}
   {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_SKEDDETAIL_LEVELOFSERVICE();") %}
-  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FARE_CLASS_VISIBILITY_XREF();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FARE_CLASS_VISIBILITY_XREF();") %}  
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_AGENCY();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_AIRCRAFT_DEFINITION();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_AIRPORT();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_CHARGE_CATEGORY();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_COUNTRY();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_CURRENCY();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_DISTRIBUTION_CHANNEL();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FLIGHT_STATUS_DEFINITION();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FLIGHT_TYPE_DEFINITION();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_GL_CHARGE_TYPE_DEFINITION();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_PAX_REQUESTS_DEFINITION();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_RES_PAX_GROUP_REQUESTS_XREF();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_PROVINCE_DEFINITION();") %}    
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_RES_HEADER();") %} 
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_RES_PAX_GROUP();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_RES_STANDBY_SEGMENTS();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_SKED_DETAIL();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_TAX_CONFIGURATION();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_USERS();") %}
 {% endmacro %}
