@@ -43,6 +43,7 @@ sources:
       - name: TBL_SKED_FLIGHT_WATCH_JOURNEY_LOG
       - name: TBL_RES_CHECKIN
       - name: TBL_TAX_CONFIGURATION
+      - name: VW_RAW_REVENUE_AMELIA
 
   - name: INFLIGHTSALES_DIM_STG
     database: INFLIGHT_SALES_DATAMART_{{ env_var('DBT_DBENV', 'DEV') }}
@@ -64,3 +65,12 @@ sources:
       - name: LIFE_REPORT_FLIGHTS_FACT
       - name: ORDER_FACT
         description: Inflight Sales Staging Data
+  - name: MIS_DBO
+    database: STAGE_{{ env_var('DBT_DBENV', 'DEV') }}
+    schema: MIS_DBO
+    tables:
+      - name: STG_FLIGHT_SEGMENTS
+      - name: STG_PAX
+      - name: STG_PAX_ANCILLARY_CHARGES
+      - name: STG_PAX_ANCILLARY_TRANSACTIONS
+      - name: STG_PAX_ANCILLARY_PAYMENTS
