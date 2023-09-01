@@ -4,7 +4,7 @@
     )
 }}
 select
-'MIS Choice' AS Source,
+'Amelia' AS Source,
 --change the timezone conversion here as handles daylight saving 
 TO_VARCHAR(convert_timezone('UTC', 'America/Denver', t1.DTM_GL_PAYMENTS_DATE),'MM/DD/YYYY') as "Payment Date",
 --to_varchar(timeadd(hour,-6,t1.DTM_GL_PAYMENTS_DATE),'MM/DD/YYYY HH12:MI:SS AM') as "Payment Date",
