@@ -22,4 +22,20 @@
   {% do run_query("call STAGE_PROD.MIS_DBO.PROC_STG_USERS();") %}
   {% do run_query("call STAGE_PROD.MIS_DBO.PROC_STG_ANCILLARY_TEMPLATES_TO_CHARGES();") %}    
   {% do run_query("call STAGE_PROD.MIS_DBO.PROC_STG_BAGS();") %} 
+  {% do run_query("call STAGE_PROD.MIS_DBO.PROC_STG_ANCILLARY_AIRCRAFT_SEAT_CHARGES();") %}
+  {% do run_query("call STAGE_PROD.MIS_DBO.PROC_STG_ANCILLARY_AIRCRAFT_SEAT_TEMPLATES();") %}
+  {% do run_query("call STAGE_PROD.MIS_DBO.PROC_STG_ANCILLARY_WAIVE_CATEGORIES();") %}
+  {% do run_query("call STAGE_PROD.MIS_DBO.PROC_STG_BAG_TRACKING();") %}
+  {% do run_query("call STAGE_PROD.MIS_DBO.PROC_STG_BLACKLIST_PAX();") %}
+  {% do run_query("call STAGE_PROD.MIS_DBO.PROC_STG_BLOCKED_SEATS();") %}
+  {% do run_query("call STAGE_PROD.MIS_DBO.PROC_STG_FLIGHT_CLOSEOUT_TRANSACTIONS();") %}
+  {% do run_query("call STAGE_PROD.MIS_DBO.PROC_STG_FLIGHT_EXCEPTION_REPORTS();") %}
+  {% do run_query("call STAGE_PROD.MIS_DBO.PROC_STG_FLIGHT_REMARKS();") %}
+  {% do run_query("call STAGE_PROD.MIS_DBO.PROC_STG_FLIGHT_SEGMENT_ANNOUNCEMENTS();") %}
+  {% do run_query("call STAGE_PROD.MIS_DBO.PROC_STG_FLIGHT_SEGMENT_DELAYS();") %}
+  {% do run_query("call STAGE_PROD.MIS_DBO.PROC_STG_TRAVEL_DOCUMENT_SECURITY_RESPONSES();") %}
+  {% do run_query("call STAGE_PROD.MIS_DBO.PROC_STG_USER_CATEGORIES();") %}
+  {% do run_query("call STAGE_PROD.MIS_DBO.PROC_STG_VETTING_SECURITY_RESPONSES();") %}
+  {% do run_query("call STAGE_PROD.MIS_DBO.PROC_STG_WORKFLOWS();") %}
+  {% do run_query("call STAGE_PROD.MIS_DBO.PROC_STG_WORKFLOWSTEPS();") %}
 {% endmacro %}
