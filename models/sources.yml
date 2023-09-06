@@ -23,18 +23,49 @@ sources:
       - name: TBL_CHARGE_CATEGORY
       - name: TBL_GL_CHARGES
       - name: TBL_RES_HEADER
+      - name: TBL_RES_SEGMENTS
       - name: TBL_RES_LEGS
-
+      - name: TBL_COUNTRY
+      - name: TBL_PROVINCE_DEFINITION
+      - name: TBL_AIRPORT
+      - name: TBL_RES_PAX_GROUP
+      - name: TBL_SKED_MASTER_HEADER
+      - name: TBL_SKED_HEADER
+      - name: TBL_SKED_MASTER_DETAIL
+      - name: TBL_SKED_DETAIL
+      - name: TBL_PAX
+      - name: TBL_RES_SEGMENTS_LEVEL
+      - name: TBL_LEG_FLIGHTS
+      - name: TBL_GL_PAYMENTS
+      - name: TBL_GL_PAYMENT_METHOD
+      - name: TBL_AGENCY
+      - name: TBL_USERS
+      - name: TBL_SKED_FLIGHT_WATCH_JOURNEY_LOG
+      - name: TBL_RES_CHECKIN
+      - name: TBL_TAX_CONFIGURATION
+  - name: INFLIGHTSALES_DIM_STG
+    database: INFLIGHT_SALES_DATAMART_{{ env_var('DBT_DBENV', 'DEV') }}
+    schema: DIMENSIONS
+    tables:
+      - name: AIRCRAFT_DIM
+      - name: AIRLINE_FLIGHT_DIM
+      - name: AIRPORT_DIM
+      - name: CURRENCY_DIM
+      - name: DISCOUNT_REASON_DIM
+      - name: FLIGHT_DIM
+      - name: ORDER_DIM
+      - name: PRODUCT_DIM
+      - name: TAX_INFO_DIM
+  - name: INFLIGHTSALES_FACT_STG
+    database: INFLIGHT_SALES_DATAMART_{{ env_var('DBT_DBENV', 'DEV') }}
+    schema: FACTS
+    tables:
+      - name: LIFE_REPORT_FLIGHTS_FACT
+      - name: ORDER_FACT
+        description: Inflight Sales Staging Data
   - name: QUALTRICS
     database: FIVETRAN_DATABASE
     schema: QUALTRICS_CUSTOMER_FEEDBACK
     tables:
       - name: SURVEY_EMBEDDED_DATA
         description: This is a raw data ingested in Snowflake via FIVETRAN
-          
-
-                
-                  
-
-          
-                  
