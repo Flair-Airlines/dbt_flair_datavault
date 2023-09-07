@@ -14,8 +14,8 @@ select
       'TAILNUMBER'
  ]) }} as AIRCRAFT_IDENTIFIER,
  {{ dbt_utils.generate_surrogate_key([
-      'AIRLINE_CODE','FLIGHT_NUMBER','DEPARTURE_DATE_UTC_'
- ]) }} as FLIGHT_IDENTIFIER,
+      'AIRLINE_CODE','FLIGHT_NUMBER'
+ ]) }} as AIRLINE_FLIGHT_IDENTIFIER,
  CURRENCY AS CURRENCY_CODE,
   {{ dbt_utils.generate_surrogate_key([
       'PRODUCT_CODE','PRODUCT_GROUP'
@@ -38,10 +38,12 @@ BASE AS BASE_AMOUNT,
 DISCOUNT AS DISCOUNT_AMOUNT,
 TAX AS TAX_AMOUNT,
 TOTAL_GROSS AS TOTAL_GROSS_AMOUNT,
+DEPARTURE_DATE_UTC_ AS DEPARTURE_STANDARD_DATETIME,
+DEPARTURE_DATE_LOCAL_  AS DEPARTURE_LOCAL_DATETIME ,
 CURRENT_TIMESTAMP AS INSERTDATETIME,
 _FILE
  from {{ source('INFLIGHTSALES_LIFEBOB', 'FLIGHTS') }}
-{% if is_incremental() %}
+ {% if is_incremental() %}
 
   -- this filter will only be applied on an incremental run
   where INSERTDATETIME > IFNULL((select max(INSERTDATETIME) from {{ this }}),'1900-01-01')
