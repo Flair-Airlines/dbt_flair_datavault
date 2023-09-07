@@ -5,8 +5,11 @@
 }}
 
 select 
-TO_VARCHAR(TO_DATE(t1.DTM_GL_CHARGES_DATE),'MM/DD/YYYY') as "Charge Date",
-TO_VARCHAR(TO_DATE(t4.DTM_FLIGHT_DATE),'MM/DD/YYYY') as "Flight Date",
+-- convert to mt time
+ TO_VARCHAR(convert_timezone('UTC', 'America/Denver', t1.DTM_GL_CHARGES_DATE),'MM/DD/YYYY') as "Charge Date",
+--TO_VARCHAR(TO_DATE(t1.DTM_GL_CHARGES_DATE),'MM/DD/YYYY') as "Charge Date",
+--change to local date
+TO_VARCHAR(TO_DATE(t4.DTM_LOCAL_ETD_DATE),'MM/DD/YYYY') as "Flight Date",
 TO_VARCHAR(YEAR(t4.DTM_FLIGHT_DATE)) as "Flight Year",
 TO_VARCHAR(MONTH(t4.DTM_FLIGHT_DATE)) as "Flight Month",
 t1.LNG_RESERVATION_NMBR as "Reservation #",
@@ -22,7 +25,9 @@ case
 end as "Category"
 
 from {{ source('PSS_AMELIARES_DBO', 'TBL_GL_CHARGES') }} t1
-left join {{ source('PSS_AMELIARES_DBO', 'TBL_RES_HEADER') }}  t2 on t2.LNG_RESERVATION_NMBR = t1.LNG_RESERVATION_NMBR
-LEFT JOIN {{ source('PSS_AMELIARES_DBO', 'TBL_RES_SEGMENTS') }} t3 on t3.LNG_RES_LEGS_ID_NMBR = t1.LNG_RES_LEGS_ID_NMBR
-LEFT join {{ source('PSS_AMELIARES_DBO', 'TBL_SKED_DETAIL') }} t4 on t4.LNG_SKED_DETAIL_ID_NMBR = t3.LNG_SKED_DETAIL_ID_NMBR
+left join {{ source('PSS_AMELIARES_DBO', 'TBL_RES_HEADER') }}  t2 on t2.LNG_RESERVATION_NMBR = t1.LNG_RESERVATION_NMBR and t2._fivetran_deleted = FALSE
+LEFT JOIN {{ source('PSS_AMELIARES_DBO', 'TBL_RES_SEGMENTS') }} t3 on t3.LNG_RES_LEGS_ID_NMBR = t1.LNG_RES_LEGS_ID_NMBR and t3._fivetran_deleted = FALSE
+LEFT join {{ source('PSS_AMELIARES_DBO', 'TBL_SKED_DETAIL') }} t4 on t4.LNG_SKED_DETAIL_ID_NMBR = t3.LNG_SKED_DETAIL_ID_NMBR and t4._fivetran_deleted = FALSE
+--where  t2.str_cax_reason not in ('Hold On Reservation Expired')
 group by 1,2,3,4,5,6,10
+

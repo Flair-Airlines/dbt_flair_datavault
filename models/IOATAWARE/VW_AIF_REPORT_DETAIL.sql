@@ -12,11 +12,13 @@ left join {{ source('PSS_AMELIARES_DBO', 'TBL_RES_SEGMENTS') }} t4 on t4.LNG_RES
 left join {{ source('PSS_AMELIARES_DBO', 'TBL_SKED_DETAIL') }} t5 on t5.LNG_SKED_DETAIL_ID_NMBR = t4.LNG_SKED_DETAIL_ID_NMBR
 )
 select 
-TO_VARCHAR(TO_DATE(t5.DTM_FLIGHT_DATE),'YYYY/MM/DD') as "Flight Date",
-TO_VARCHAR(TO_TIME(t5.DTM_FLIGHT_DATE),'HH24:MI:SS') as "Flight time",
 t5.LNG_SKED_DETAIL_ID_NMBR as "Flight ID",
+TO_VARCHAR(TO_DATE(t5.DTM_FLIGHT_DATE),'YYYY/MM/DD') as "Flight Date",
+t5.STR_FLIGHT_NMBR as "Flight Number",
+
 t6.STR_IDENT as "Departure",
 t7.STR_IDENT as "Arrival",
+
 t1.LNG_RESERVATION_NMBR as "Reservation Number",
 t8.LNG_LEG_NMBR as "Leg Number", 
 t1.STR_REF1 as "PNR",
