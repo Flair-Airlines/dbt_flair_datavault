@@ -59,7 +59,6 @@ models:
       materialized: INCREMENTAL
       database: AMELIA_DATAMART_DEV
       schema: DIMENSIONS
-
     IOATAWARE:
       database: ANALYTICS_PROD
       schema: IOATAWARE
@@ -67,7 +66,10 @@ models:
       INFLIGHT_SALES:
         database: ANALYTICS_{{ env_var('DBT_DBENV', 'DEV') }}
         schema: INFLIGHT_SALES
-
+    QUALTRICS_RAW_PRE_STAGE:
+      materialized: INCREMENTAL
+      database: FIVETRAN_DATABASE
+      schema: QUALTRICS_CUSTOMER_FEEDBACK
 seeds:
   my_new_project:
     STAGING_DEV:

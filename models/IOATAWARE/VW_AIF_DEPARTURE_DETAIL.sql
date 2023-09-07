@@ -17,6 +17,8 @@ TO_VARCHAR(TO_TIME(t5.DTM_FLIGHT_DATE),'HH24:MI:SS') as "Flight time",
 t5.STR_FLIGHT_NMBR as "Flight Number",
 t6.STR_IDENT as "Departure",
 t7.STR_IDENT as "Arrival",
+
+
 t1.LNG_RESERVATION_NMBR as "Reservation Number",
 t2.LNG_RES_LEGS_ID_NMBR as "Leg Number", 
 t1.STR_REF1 as "PNR",
