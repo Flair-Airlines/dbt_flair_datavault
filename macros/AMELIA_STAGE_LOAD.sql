@@ -46,4 +46,5 @@
   {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_SKED_DETAIL();") %}
   {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_TAX_CONFIGURATION();") %}
   {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_USERS();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FARE_ALLOCATION();") %}
 {% endmacro %}
