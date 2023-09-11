@@ -47,4 +47,9 @@
   {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_TAX_CONFIGURATION();") %}
   {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_USERS();") %}
   {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_FARE_ALLOCATION();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_GL_PAYMENT_METHOD();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_GL_REFUND_CC_XREF();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_GL_PAYMENTS_REFUND();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_CC_TRACK();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_GL_CREDITCARD_PAYMENT();") %}
 {% endmacro %}
