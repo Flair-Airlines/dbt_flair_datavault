@@ -7,7 +7,7 @@
 SELECT 
     LIFE_REPORT_FLIGHTS_FACT_IDENTIFIER as "Life Report Flights Fact Identifier",
 	AIRCRAFT_IDENTIFIER as "Aircraft Identifier",
-	FLIGHT_IDENTIFIER as "Flight Identifier",
+	AIRLINE_FLIGHT_IDENTIFIER as "Airline Flight Identifier",
 	CURRENCY_CODE as "Currency Code",
 	PRODUCT_IDENTIFIER as "Product Identifier",
 	ORDER_IDENTIFIER as "Order Identifier",
