@@ -52,4 +52,6 @@
   {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_GL_PAYMENTS_REFUND();") %}
   {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_CC_TRACK();") %}
   {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_GL_CREDITCARD_PAYMENT();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_GL_PAYMENTS();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_GL_PAYMENT_CC_XREF();") %}
 {% endmacro %}
