@@ -55,4 +55,6 @@
   {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_GL_PAYMENTS();") %}
   {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_GL_PAYMENT_CC_XREF();") %}
   {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_BULK_MOVE_TRACKING();") %}
+  {% do run_query("call STAGE_DEV.AMELIA_DBO.PROC_STG_GL_PAYMENT_ASSIGNMENT();") %}
+
 {% endmacro %}
