@@ -63,4 +63,7 @@
   {% do run_query("call STAGE_PROD.AMELIA_DBO.PROC_STG_RESERVATIONS_ALERTS_HEADER();") %}
   {% do run_query("call STAGE_PROD.AMELIA_DBO.PROC_STG_AIRCRAFT_MODEL_DEFINITION();") %}
   {% do run_query("call STAGE_PROD.AMELIA_DBO.PROC_STG_GL_CHARGES_MOD_AUDIT();") %}
+  {% do run_query("call STAGE_PROD.AMELIA_DBO.PROC_STG_VOUCHERS();") %}
+  {% do run_query("call STAGE_PROD.AMELIA_DBO.PROC_STG_VOUCHER_DEFINITION();") %}
+  {% do run_query("call STAGE_PROD.AMELIA_DBO.PROC_STG_VOUCHER_PAYMENTS_XREF();") %}
 {% endmacro %}
