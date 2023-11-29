@@ -66,4 +66,5 @@
   {% do run_query("call STAGE_PROD.AMELIA_DBO.PROC_STG_VOUCHERS();") %}
   {% do run_query("call STAGE_PROD.AMELIA_DBO.PROC_STG_VOUCHER_DEFINITION();") %}
   {% do run_query("call STAGE_PROD.AMELIA_DBO.PROC_STG_VOUCHER_PAYMENTS_XREF();") %}
+  {% do run_query("call STAGE_PROD.AMELIA_DBO.PROC_STG_SSR_RES_LEG_BOOKING_LIFECYCLE_XREF();") %}
 {% endmacro %}
