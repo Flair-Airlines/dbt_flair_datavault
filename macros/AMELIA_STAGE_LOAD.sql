@@ -70,4 +70,5 @@
   {% do run_query("call STAGE_PROD.AMELIA_DBO.PROC_STG_SKED_HEADER();") %}
   {% do run_query("call STAGE_PROD.AMELIA_DBO.PROC_STG_RESERVATION_SPLIT_TRACK();") %}
   {% do run_query("call STAGE_PROD.AMELIA_DBO.PROC_STG_SSR_RES_LEG_XREF();") %}
+  {% do run_query("call STAGE_PROD.AMELIA_DBO.PROC_STG_SEAT_ASSIGNMENT_RESERVATION();") %}
 {% endmacro %}
